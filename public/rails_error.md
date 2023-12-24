@@ -1,14 +1,14 @@
 ---
 title: 【Rails】初学者向けエラー対応まとめ
 tags:
-  - 'Ruby'
-  - 'Rails'
-  - '初心者'
-  - '初心者向け'
-  - '新人プログラマ応援'
+  - Ruby
+  - Rails
+  - 初心者
+  - 初心者向け
+  - 新人プログラマ応援
 private: false
-updated_at: ''
-id: null
+updated_at: '2023-12-24T19:26:55+09:00'
+id: 34e5811be737b84c51ae
 organization_url_name: null
 slide: false
 ignorePublish: false
