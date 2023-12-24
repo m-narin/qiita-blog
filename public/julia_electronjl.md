@@ -11,6 +11,7 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # はじめに
 この記事ではElectron.jlで以下のようなGUIのカウンターアプリを作ります。これを通してElectron.jlの基本的な使い方を習得できるかなと思います。
 
@@ -40,7 +41,7 @@ READMEを見ながら必要なライブラリを揃えれば、この記事のEl
 
 この記事では各ファイルのソースコードの意味について触れていきます。
 
-```main.html
+```html:main.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +74,7 @@ READMEを見ながら必要なライブラリを揃えれば、この記事のEl
 
 HTMLでアプリのデザインの骨格を作成します。入力、ボタン、画像等の要素を入れています。buttonではJavaScriptの関数を呼んでいます。
 
-```main.css
+```css:main.css
 .counter_container{
   display: flex;
   flex-direction: column;
@@ -95,7 +96,7 @@ HTMLでアプリのデザインの骨格を作成します。入力、ボタン�
 
 CSSでHTMLのデザインを整えます。
 
-```main.js
+```js:main.js
 function plus(){
   let input_number = Number(document.getElementById("input_number").value)
   let jsonString = makeJsonString("plus", input_number)
@@ -127,7 +128,7 @@ function setImage(file_path){
 JSで色々な関数を定義します。`sendMessageToJulia`はElectron.jlで定義されている、Juliaに情報を送信するための専用の関数です。送信する情報は互換性と拡張性の観点からJson形式にします。JS側でJsonの文字列を生成し、Json形式に直してJuliaに送信します。
 また、Julia側で利用するためのJSの関数も定義します。Julia側で更新されたカウントの数字そのものと画像を、HTMLの要素を書き換えることで出力します。
 
-```main.jl
+```julia:main.jl
 using Electron
 
 include("useImage.jl")
@@ -182,7 +183,7 @@ end
 
 今回の場合、Json形式のデータは以下のようにJulia側で辞書型として受け取ることになります。
 
-```jl
+```julia:
 request: Dict{String, Any}("order" => "plus", "input_number" => 1)
 ```
 
@@ -190,7 +191,7 @@ request: Dict{String, Any}("order" => "plus", "input_number" => 1)
 
 また、`make_accumulation_image`で画像を作成します。これは`useImage.jl`で定義されたJuliaの関数です。
 
-```useImage.jl
+```julia:useImage.jl
 using Plots, Images, Dates
 
 function make_accumulation_image(dataArray)

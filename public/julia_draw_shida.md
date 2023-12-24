@@ -25,7 +25,7 @@ https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%83%B3%E3%82%BA%E3%83%AA%E3%8
 
 4つの関数を定義します。
 
-```jl
+```julia:
 #4つの関数の定義
 
 f1 = (x,y) -> (0., 0.16*y)
@@ -37,7 +37,7 @@ fs = [f1, f2, f3, f4]
 
 上記の式を利用し、画像行列を生成します。x,y各座標を条件に従って更新していきます。
 
-```jl
+```julia:
 # 計算回数
 num = 50000
 # Canvas size (pixels)
@@ -73,7 +73,7 @@ end
 
 可視化します。
 
-```jl
+```julia:
 # 全体図
 using Images, ImageView
 

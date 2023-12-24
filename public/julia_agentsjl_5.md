@@ -10,6 +10,7 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # はじめに
 今回はAgents.jlの森林火災の例題を見ていきます。セルオートマトンで森林火災の様子を離散的に表現しています。
 
@@ -21,7 +22,7 @@ https://juliadynamics.github.io/AgentsExampleZoo.jl/dev/examples/forest_fire
 
 # Agentの設定
 
-```jl
+```julia:
 using Agents, Random
 using InteractiveDynamics
 using CairoMakie
@@ -33,7 +34,7 @@ using CairoMakie
 
 # モデルの定義
 
-```jl
+```julia:
 function forest_fire(; density = 0.7, griddims = (100, 100), seed = 2)
     space = GridSpace(griddims; periodic = false, metric = :manhattan)
     rng = Random.MersenneTwister(seed)
@@ -60,7 +61,7 @@ forest = forest_fire()
 
 trees配列の各要素を更新していきます。
 
-```jl
+```julia:
 function tree_step!(forest)
     # Find trees that are burning (coded as 2)
     for I in findall(isequal(2), forest.trees)
@@ -84,14 +85,14 @@ end
 ステップを任意の数だけ実行し火状態の木をカウントします。
 
 1step実行
-```jl
+```julia:
 Agents.step!(forest, dummystep, tree_step!, 1)
 count(t == 3 for t in forest.trees)
 ```
 -> 70
 
 10step実行
-```jl
+```julia:
 Agents.step!(forest, dummystep, tree_step!, 10)
 count(t == 3 for t in forest.trees)
 ```
@@ -101,7 +102,7 @@ count(t == 3 for t in forest.trees)
 
 火状態の木の割合を計測する関数を作成し、シミュレーションを実行します。その計測結果をdataframeに格納して表示します。
 
-```jl
+```julia:
 forest = forest_fire(griddims = (20, 20))
 burnt_percentage(f) = count(t == 3 for t in f.trees) / prod(size(f.trees))
 mdata = [burnt_percentage]
@@ -114,7 +115,7 @@ data
 
 各セルの値に応じて色をつけて出力します。
 
-```jl
+```julia:
 forest = forest_fire()
 Agents.step!(forest, dummystep, tree_step!, 1)
 
@@ -135,7 +136,7 @@ fig
 
 # アニメーションを作成
 
-```jl
+```julia:
 forest = forest_fire(density = 0.7, seed = 10)
 abmvideo(
     "forest.gif",

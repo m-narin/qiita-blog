@@ -10,6 +10,7 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # はじめに
 
 Julia上でエージェントベースモデル(ABM)の構築を行うパッケージであるAgents.jlの例題を勉強、解説していこうというコーナーになります。研究の際にダイレクトに扱っていて、まだプログラミング経験の浅いときに公式ドキュメントの読解からスタートすることになったため、当初は非常に苦労した記憶がありました。なので、将来そのような人達に向けてお役に立てれば嬉しい次第です。今回のその初陣となります。初回なので、JuliaとAgents.jlそれぞれの解説から入っていこうと思います。
@@ -68,7 +69,7 @@ https://juliadynamics.github.io/Agents.jl/stable/examples/schelling/#Schelling's
 
 ## エージェント、空間の定義
 
-```jl
+```julia:
 using Agents
 
 space = GridSpace((10, 10); periodic = false)
@@ -84,7 +85,7 @@ end
 AbstractAgentというスーパークラスを継承して変更可能なagentの型(ShellingAgent)を生成します。エージェントの集合は、IDをキー、構造体をバリューに持つ辞書型となっています。今回の場合、idと2D空間の座標を表す整数タプルのpos、mood、group4つのフィールドを構造体中に持ちます。
 イメージとしては以下のようになるでしょうか
 
-```jl
+```julia:
 Dict(1=> {id:1, pos:(1,1), mood:true, group:1},,,)
 ```
 
@@ -92,7 +93,7 @@ Dict(1=> {id:1, pos:(1,1), mood:true, group:1},,,)
 
 ## モデルの作成
 
-```jl
+```julia:
 using Random # for reproducibility
 function initialize(; numagents = 320, griddims = (20, 20), min_to_be_happy = 3, seed = 125)
     space = GridSpace(griddims, periodic = false)
@@ -120,7 +121,7 @@ end
 
 ## ステップ関数
 
-```jl
+```julia:
 function agent_step!(agent, model)
     minhappy = model.min_to_be_happy
     count_neighbors_same_group = 0
@@ -149,20 +150,20 @@ end
 
 ## モデルの実体の生成
 
-```jl
+```julia:
 model = initialize()
 ```
 
 さきほど定義したinitialize関数を実行させることで、モデルとagentを実際に生成します。ここでtutorialにはないですが、各agentの構造を調べてみましょう。
 
-```jl
+```julia:
 model[1]
 ```
 辞書となっているキー番号を指定すると
 `SchellingAgent(1, (14, 19), false, 1)`
 例えばこのようにjuliaの構造体が帰ってきます。
 
-```jl
+```julia:
 model[1].mood
 ```
 `false`
@@ -170,7 +171,7 @@ model[1].mood
 
 ## 可視化
 
-```jl
+```julia:
 using InteractiveDynamics
 using CairoMakie # choosing a plotting backend
 
@@ -188,7 +189,7 @@ figure # returning the figure displays it
 
 ## アニメーション
 
-```jl
+```julia:
 model = initialize();
 
 # tutorialとは異なりjuypter上で出力しやすいgif形式に変更
@@ -209,7 +210,7 @@ display("image/gif", read("schelling.gif"))
 
 ## データ収集
 
-```jl
+```julia:
 adata = [:pos, :mood, :group]
 
 model = initialize()

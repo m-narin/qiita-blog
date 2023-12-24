@@ -10,6 +10,7 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # はじめに
 今回はAgents.jlのコンウェイのライフゲームの例題を見ていきます。ライフゲームは、生命の誕生、進化、淘汰をコンピュータ上でモデル化してシミュレーションを試みたものです。生物や物理の種々の現象を、格子状のセルに離散化して簡単なルールに基づいて解き明かそうとするセルオートマトンの古典的な例題として親しまれています。
 
@@ -30,7 +31,7 @@ https://ja.wikipedia.org/wiki/%E3%82%BB%E3%83%AB%E3%83%BB%E3%82%AA%E3%83%BC%E3%8
 
 # ルールの設定
 
-```jl
+```julia:
 using Agents, Random
 
 rules = (2, 3, 3, 3) # (D, S, R, O)
@@ -49,7 +50,7 @@ rulesはそれぞれ、Death, Survival, Reprodution, Overproductionを表しま�
 
 # モデルの定義
 
-```jl
+```julia:
 mutable struct Cell <: AbstractAgent
     id::Int
     pos::Dims{2}
@@ -60,7 +61,7 @@ end
 pos: Dim{2}はTuple{Int64, Int64}のこと
 status: trueは生存、falseは死を表す
 
-```jl
+```julia:
 function build_model(; rules::Tuple, dims = (100, 100), metric = :chebyshev, seed = 120)
     space = GridSpace(dims; metric)
     properties = Dict(:rules => rules)
@@ -82,7 +83,7 @@ build_model!でABMのを生成します。100x100のGrid空間を利用し、`me
 
 agentの内部状態を更新する際、各step数ごとに全agentを同期して(まとめて)更新するように記述していきます(通常はagent一つずつに更新が適用されていきます)。
 
-```jl
+```julia:
 function ca_step!(model)
     new_status = fill(false, nagents(model))
     for agent in allagents(model)
@@ -115,13 +116,13 @@ end
 
 # モデルの作成
 
-```jl
+```julia:
 model = build_model(rules = rules, dims = (50, 50))
 ```
 
 ABMを生成します。
 
-```jl
+```julia:
 for i in 1:nagents(model)
     if rand(model.rng) < 0.2
         model.agents[i].status = true
@@ -133,7 +134,7 @@ end
 
 # アニメーションとして実行
 
-```jl
+```julia:
 using InteractiveDynamics
 import CairoMakie
 

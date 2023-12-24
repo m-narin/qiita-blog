@@ -10,6 +10,7 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # はじめに
 今回はAgents.jlの連続空間における感染症拡大例題について見ていきます。例題では物理の運動方程式を利用してモデルを構築しています。
 
@@ -27,7 +28,7 @@ https://www.washingtonpost.com/graphics/2020/world/corona-simulator/
 
 # 連続空間で動くagent
 
-```jl
+```julia:
 using Agents, Random
 
 mutable struct Agent <: AbstractAgent
@@ -40,7 +41,7 @@ end
 
 連続空間においてagentはpos=座標位置情報と、vel=速度情報を扱う浮動小数点型のタプルを用意します。また、massは質量を扱います。後に運動方程式を用い、動かないagentを用意するためです。
 
-```jl
+```julia:
 function ball_model(; speed = 0.002)
     space2d = ContinuousSpace((1, 1), 0.02)
     model = ABM(Agent, space2d, properties = Dict(:dt => 1.0), rng = MersenneTwister(42))
@@ -60,12 +61,12 @@ model = ball_model()
 `ball_model`関数でABMを生成できるようにします。ボールが空間内を動き回る様子だけをまずは作ります。
 0-1範囲の平面空間とmodelを定義し、500体のagentを作り出します。pos(座標)とvel(速度ベクトル)はランダムで、add_agent!関数により各agentのpos, vel, mass(=1.0)にそれぞれ値が入るようにします。
 
-```jl
+```julia:
 agent_step!(agent, model) = move_agent!(agent, model, model.dt)
 ```
 連続空間において`move_agent!`関数が用意されていてこれを利用します。
 
-```jl
+```julia:
 using InteractiveDynamics
 using CairoMakie
 
@@ -87,7 +88,7 @@ display("image/gif", read("socialdist1.gif"))
 
 # agent同士の衝突
 
-```jl
+```julia:
 function model_step!(model)
     for (a1, a2) in interacting_pairs(model, 0.012, :nearest)
         elastic_collision!(a1, a2, :mass)
@@ -113,7 +114,7 @@ display("image/gif", read("socialdist2.gif"))
 
 # 動かないagent
 
-```jl
+```julia:
 model3 = ball_model()
 
 for id in 1:400
@@ -148,7 +149,7 @@ R:recovered(回復者)
 
 を表します。ABMではこれらの状態を各agentに与え、SとIが近くに居たらある確率で感染が起こり(S→Iに変化)、Iのagentは一定時間後回復する(I→R)ような現象を構築していきます。
 
-```jl
+```julia:
 mutable struct PoorSoul <: AbstractAgent
     id::Int
     pos::NTuple{2,Float64}
@@ -162,7 +163,7 @@ end
 
 `boll_model`でのagentに加えて、感染日数と感染状態、βを与えます。βは感染確率です。agentに与えることで個々人のagentの免疫力によって感染が起きるか起きないかを表現する狙いがあります。
 
-```jl
+```julia:
 const steps_per_day = 24
 
 using DrWatson: @dict
@@ -213,7 +214,7 @@ end
 
 細かいパラメータがたくさん出てきますが、意味は大体英語の通りです。これらのパラメータは後に感染条件を記述する際に用います。初期agentを1000体生成し、5体の初期感染者を置きます。
 
-```jl
+```julia:
 sir_model = sir_initiation()
 
 sir_colors(a) = a.status == :S ? "#2b2b33" : a.status == :I ? "#bf2642" : "#338c54"
@@ -224,7 +225,7 @@ fig # display figure
 
 sir_modelを作り、各agentのstatusに応じて色を変えます。初期画面を出力しています。
 
-```jl
+```julia:
 function transmit!(a1, a2, rp)
     # for transmission, only 1 can have the disease (otherwise nothing happens)
     count(a.status == :I for a in (a1, a2)) ≠ 1 && return
@@ -255,7 +256,7 @@ sirの状態を更新するためのステップ関数を記述します。`tran
 
 `sir_model_step`関数は、相互作用が起きる範囲内において最も距離が近い2体のagentを取得し、これを`transmit`関数に渡しています。また、よりランダムな動きを表現するために衝突も定義されています。
 
-```jl
+```julia:
 function sir_agent_step!(agent, model)
     move_agent!(agent, model, model.dt)
     update!(agent)
@@ -278,7 +279,7 @@ end
 
 `sir_agent_step`関数はstatusのsirの更新以外の項目に関するステップ関数になります。`update!`関数は、感染日数を更新する関数です。`recover_or_die!`関数はその名の通り、agentの感染日数が指定の日数に到達したら、指定の死亡率に従って`kill_agent!`(該当agent自体がmodel中から削除されます。なので合計agent数は減ります)され、生き延びたagentのstatusはRに変わります。
 
-```jl
+```julia:
 sir_model = sir_initiation()
 
 abm_video(
@@ -301,7 +302,7 @@ display("image/gif", read("socialdist4.gif"))
 
 # 爆発的な感染
 
-```jl
+```julia:
 infected(x) = count(i == :I for i in x)
 recovered(x) = count(i == :R for i in x)
 adata = [(:status, infected), (:status, recovered)]
@@ -309,7 +310,7 @@ adata = [(:status, infected), (:status, recovered)]
 
 sirそれぞれのstatusを持っているagentの数をstepごとにadata(dataframe)に格納していきます。
 
-```jl
+```julia:
 r1, r2 = 0.04, 0.33
 β1, β2 = 0.5, 0.1
 sir_model1 = sir_initiation(reinfection_probability = r1, βmin = β1)
@@ -325,7 +326,7 @@ data1[(end-10):end, :]
 
 感染率に関わるパラメータを変え、シミュレーションを実行します。
 
-```jl
+```julia:
 using CairoMakie
 figure = Figure()
 ax = figure[1, 1] = Axis(figure; ylabel = "Infected")
@@ -341,7 +342,7 @@ figure
 
 # ソーシャルディスタンス
 
-```jl
+```julia:
 sir_model = sir_initiation(isolated = 0.8)
 
 abm_video(
@@ -364,7 +365,7 @@ display("image/gif", read("socialdist5.gif"))
 
 >Here we let some 20% of the population not be isolated, probably teenagers still partying, or anti-vaxers / flat-earthers that don't believe in science. Still, you can see that the spread of the virus is dramatically contained.
 
-```jl
+```julia:
 r4 = 0.04
 sir_model4 = sir_initiation(reinfection_probability = r4, βmin = β1, isolated = 0.8)
 

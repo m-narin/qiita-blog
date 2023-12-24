@@ -10,6 +10,7 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # はじめに
 今回はAgents.jlの鳥の群れ(flocking)例題について見ていきます。各個体が3つのルールに基づいて周囲から影響を受けて行動をすることで、最終的には群れになっていく様子をコンピュータ上でモデル化していきます。こちらもABMの古典的な例題として親しまれています。
 
@@ -24,7 +25,7 @@ https://juliadynamics.github.io/Agents.jl/stable/examples/flock/
 
 # モデルの定義
 
-```jl
+```julia:
 using Agents, LinearAlgebra
 
 mutable struct Bird <: AbstractAgent
@@ -47,7 +48,7 @@ end
 ・match_factor:近隣鳥の軌道に沿う動きの重み
 ・visual_distance:鳥の視界の範囲(半径)
 
-```jl
+```julia:
 function initialize_model(;
     n_birds = 100,
     speed = 1.0,
@@ -82,7 +83,7 @@ end
 
 # step関数
 
-```jl
+```julia:
 function agent_step!(bird, model)
     # Obtain the ids of neighbors within the bird's visual distance
     neighbor_ids = nearby_ids(bird, model, bird.visual_distance)
@@ -126,7 +127,7 @@ end
 
 # 可視化
 
-```jl
+```julia:
 using InteractiveDynamics
 using CairoMakie
 
