@@ -3,7 +3,7 @@ title: 【Julia】でバーンスレイのシダを描こう
 tags:
   - Julia
 private: false
-updated_at: '2021-12-07T00:49:38+09:00'
+updated_at: '2023-12-24T23:44:48+09:00'
 id: 4c1fdb8232602ffd50b7
 organization_url_name: null
 slide: false

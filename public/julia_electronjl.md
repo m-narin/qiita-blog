@@ -5,7 +5,7 @@ tags:
   - Julia
   - Electron
 private: false
-updated_at: '2023-02-05T02:21:12+09:00'
+updated_at: '2023-12-24T23:44:48+09:00'
 id: 188a14565754612e31a0
 organization_url_name: null
 slide: false
