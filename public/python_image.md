@@ -1,13 +1,13 @@
 ---
 title: 【Python】画像処理入門
 tags:
-  - 'Python'
-  - '初心者'
-  - '初学者向け'
-  - '画像処理'
+  - Python
+  - 画像処理
+  - 初心者
+  - 初学者向け
 private: false
-updated_at: ''
-id: null
+updated_at: '2023-12-24T21:52:35+09:00'
+id: dcd4303933d16b622ab1
 organization_url_name: null
 slide: false
 ignorePublish: false
