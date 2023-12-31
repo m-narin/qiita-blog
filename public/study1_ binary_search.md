@@ -47,8 +47,7 @@ ignorePublish: false
 (初回のため、チュートリアルの内容となります。)
 
 一つの数字Aと1から始まる連続する数列が以下のように与えられます。
-input
-```
+```shell:input
 7
 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
 ```
@@ -63,14 +62,12 @@ input
 - 計算量は問いません
 
 ### テストケース
-input1
-```
+```shell:input1
 8
 1,2,3,4,5,6,7,8,9,10
 ```
 
-output1
-```
+```shell:output1
 1
 2
 Fizz
@@ -81,14 +78,12 @@ Fizz
 8
 ```
 
-input2
-```
+```shell:input2
 15
 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
 ```
 
-output2
-```
+```shell:output2
 1
 2
 Fizz
@@ -150,8 +145,7 @@ fizz_buzz(last_number, array_elements)
 
 ## 問題
 一つの数字とソートされた数列が以下のように与えられます。
-input
-```
+```shell:input
 7
 1,2,3,4,5,6,8,9,10
 ```
@@ -168,25 +162,21 @@ input
   - 目視では分からないものだよね！という想定でプログラムを書きましょう
 
 ### テストケース
-input1
-```
+```shell:input1
 3
 1,2,3,4,5
 ```
 
-output1
-```
+```shell:output1
 Yes
 ```
 
-input2
-```
+```shell:input2
 7
 0,2,3,5,6,8,9,10
 ```
 
-output2
-```
+```shell:output2
 No
 ```
 
