@@ -1,12 +1,12 @@
 ---
 title: コミュニケーション促進のため質問ビンゴ大会を企画し盛り上がった話
 tags:
-  - 'ポエム'
-  - 'GoogleAppsScript'
-  - 'GAS'
+  - GoogleAppsScript
+  - GAS
+  - ポエム
 private: false
-updated_at: ''
-id: null
+updated_at: '2024-01-03T01:33:38+09:00'
+id: 93e2fc34d116a5e7924b
 organization_url_name: null
 slide: false
 ignorePublish: false
