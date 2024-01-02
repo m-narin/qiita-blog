@@ -185,7 +185,6 @@ Google Driveの指定のフォルダーに、指定の人数分、指定の範�
 例えば、以下のようなスクリプトを書くことで、30人のグループをランダムに3人ずつグループ分けできます。
 ```js:GAS
 function createRandomGroups() {
-  console.log("start")
   var numOfParticipants = 30; // 参加人数
   var numPerGroup = 3; // 3人1組
 
