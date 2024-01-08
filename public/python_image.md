@@ -20,10 +20,14 @@ ignorePublish: false
 具体的には、自分で作成したファイル中にPython言語を記述していき、これを実行させます。
 
 # 準備
-以下二つを利用していきます。まだの方がいたら、先に環境構築の章を取り組んでいきましょう！
+以下二つを利用していきます。まだの方がいたら、先に環境構築を済ませておきましょう。
 
 ・Anaconda
 ・VSCode
+
+https://www.anaconda.com/download
+
+https://code.visualstudio.com/download
 
 # 画像処理
 
@@ -260,11 +264,13 @@ plt.imshow(pixels)
 plt.show()
 ```
 
-同様に、以下実行していきましょう！
+同様に、以下実行していきましょう！画像全体の色が反転されます。
 
 ```sh:ターミナル
 python sample3.py
 ```
+
+![スクリーンショット 2024-01-08 21.16.02.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/e21be4fa-678c-ea84-fb97-88e6f11981e8.png)
 
 ### 画像の一部のみに変更を適用する
 
