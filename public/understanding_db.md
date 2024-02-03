@@ -4,9 +4,9 @@ tags:
   - Rails
   - migration
   - model
-  - データベース
+  - Database
 private: false
-updated_at: '2020-07-09T11:57:25+09:00'
+updated_at: '2024-02-04T00:29:45+09:00'
 id: 7bd624801940c999d667
 organization_url_name: null
 slide: false
