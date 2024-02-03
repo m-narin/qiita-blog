@@ -1,5 +1,5 @@
 ---
-title: study4_bit
+title: 新卒エンジニア勉強会-bit演算
 tags:
   - Python
   - 初心者
