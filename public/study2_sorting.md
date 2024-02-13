@@ -17,15 +17,14 @@ ignorePublish: false
 新卒エンジニア同士で実施している勉強会の第2回目の記事になります。
 今回のテーマはソートアルゴリズムについてです。
 
-<!-- TODO: 記事リンク貼る -->
-| 回     | テーマ | 記事リンク |
-|:-----------|:------------|:------------|
-| 第1️回      | 二分探索      | <coming soon>    |
-| **第2回**  | **ソートアルゴリズム**  |  <coming soon>     |
-| 第3回      | 暗号化            |  <coming soon>     |
-| 第4回      | bit演算          |  <coming soon>    |
-| 第5回      | 連想配列          | <coming soon>   |
-| 第6回      | グラフ理論        |  <coming soon>   |
+| 回     | テーマ |
+|:-----------|:------------|
+| 第1回 | [二分探索](https://qiita.com/MandoNarin/items/50b645309fe272325333)   | 
+| <font color="Red">第2回</font>      | [ソートアルゴリズム](https://qiita.com/MandoNarin/items/92990e6ef985d7eb9702)  |
+| 第3回      | [暗号化](https://qiita.com/MandoNarin/items/4de301502f1050355846 )     |   
+| 第4回      | [bit演算](https://qiita.com/MandoNarin/items/aff39666dbf63960ea68)     |  
+| 第5回      | [連想配列](https://qiita.com/MandoNarin/items/711d958a16f7294a0441)    | 
+| 第6回      | [グラフ理論](https://qiita.com/MandoNarin/items/9976ecff2ecd0521f8b6)   |
 
 ## 問題
 次の数列を昇順に並べ替えるプログラムを2通り以上考えてください。
@@ -133,5 +132,4 @@ https://qiita.com/drken/items/44c60118ab3703f7727f
 
 無味乾燥に.sortメソッドを使うのではなく、背景を想像しながら利用できるとまた楽しさが増すことでしょう。
 
-<!-- TODO: 記事リンク貼る -->
-次回の勉強会は暗号化についてです。
+次回の勉強会は[暗号化](https://qiita.com/MandoNarin/items/4de301502f1050355846 )についてです。

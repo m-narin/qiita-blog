@@ -17,15 +17,14 @@ ignorePublish: false
 新卒エンジニア同士で実施している勉強会の第3回目の記事になります。
 今回のテーマは暗号化についてです。
 
-<!-- TODO: 記事リンク貼る -->
-| 回     | テーマ | 記事リンク |
-|:-----------|:------------|:------------|
-| 第1️回      | 二分探索      | <coming soon>    |
-| 第2回      | ソートアルゴリズム  |  <coming soon>     |
-| **第3回**  | **暗号化**            |  <coming soon>     |
-| 第4回      | bit演算          |  <coming soon>    |
-| 第5回      | 連想配列          | <coming soon>   |
-| 第6回      | グラフ理論        |  <coming soon>   |
+| 回     | テーマ |
+|:-----------|:------------|
+| 第1回 | [二分探索](https://qiita.com/MandoNarin/items/50b645309fe272325333)   | 
+| 第2回 | [ソートアルゴリズム](https://qiita.com/MandoNarin/items/92990e6ef985d7eb9702)  |
+| <font color="Red">第3回</font> | [暗号化](https://qiita.com/MandoNarin/items/4de301502f1050355846 )     |   
+| 第4回 | [bit演算](https://qiita.com/MandoNarin/items/aff39666dbf63960ea68)     |  
+| 第5回 | [連想配列](https://qiita.com/MandoNarin/items/711d958a16f7294a0441)    | 
+| 第6回 | [グラフ理論](https://qiita.com/MandoNarin/items/9976ecff2ecd0521f8b6)   |
 
 ## 問題
 あなたはハッカーです。脆弱なサイトから、ユーザーの入力したパスワードを傍受することができました。
@@ -214,5 +213,4 @@ n=pqが途方もなく大きいおかげで、攻撃者から通信を保護す�
 なんとなく聞いたことのある公開鍵や秘密鍵の正体がこの記事を通して理解できたと思います。
 また一つ、教養が深まりましたね🙌
 
-<!-- TODO: 記事リンク貼る -->
-次回の勉強会はbit演算についてです。
+次回の勉強会は[bit演算](https://qiita.com/MandoNarin/items/aff39666dbf63960ea68)についてです。

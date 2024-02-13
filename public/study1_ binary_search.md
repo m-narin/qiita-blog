@@ -19,15 +19,14 @@ ignorePublish: false
 使用言語は文法が分かりやすいでPythonをサポートします。
 全部で6回実施し、学びが得られたと好評だったため記事に書き起こします。今回はその第一回目の記事となります。
 
-<!-- TODO: 記事リンク貼る -->
-| 回     | テーマ | 記事リンク |
-|:-----------|:------------|:------------|
-| **第1️回**  | **二分探索**      | <coming soon>    |
-| 第2回      | ソートアルゴリズム  |  <coming soon>     |
-| 第3回      | 暗号化            |  <coming soon>     |
-| 第4回      | bit演算          |  <coming soon>    |
-| 第5回      | 連想配列          | <coming soon>   |
-| 第6回      | グラフ理論        |  <coming soon>   |
+| 回     | テーマ |
+|:-----------|:------------|
+| <font color="Red">第1回</font> | [二分探索](https://qiita.com/MandoNarin/items/50b645309fe272325333)   | 
+| 第2回      | [ソートアルゴリズム](https://qiita.com/MandoNarin/items/92990e6ef985d7eb9702)  |
+| 第3回      | [暗号化](https://qiita.com/MandoNarin/items/4de301502f1050355846 )     |   
+| 第4回      | [bit演算](https://qiita.com/MandoNarin/items/aff39666dbf63960ea68)     |  
+| 第5回      | [連想配列](https://qiita.com/MandoNarin/items/711d958a16f7294a0441)    | 
+| 第6回      | [グラフ理論](https://qiita.com/MandoNarin/items/9976ecff2ecd0521f8b6)   |
 
 目的としては以下になります。
 - アルゴリズムについての理解を深め、エンジニアとしての教養を深める
@@ -260,5 +259,4 @@ Indexを貼ると、裏側にB-treeというものが作られます。これは
 このような学びを重ねることで、普段のエンジニアリングの背景が分かってきます。
 そうすると、納得感が増して、エンジニアリングが無味乾燥なものから鮮やかな景色が見えてくる感覚があることでしょう。
 
-<!-- TODO: 記事リンク貼る -->
-次回の勉強会はソートアルゴリズムです。
+次回の勉強会は[ソートアルゴリズム](https://qiita.com/MandoNarin/items/92990e6ef985d7eb9702)です。
