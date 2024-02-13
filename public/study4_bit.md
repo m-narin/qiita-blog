@@ -6,7 +6,7 @@ tags:
   - 競技プログラミング
   - 新人プログラマ応援
 private: false
-updated_at: '2024-02-04T00:32:05+09:00'
+updated_at: '2024-02-13T22:37:26+09:00'
 id: aff39666dbf63960ea68
 organization_url_name: null
 slide: false
