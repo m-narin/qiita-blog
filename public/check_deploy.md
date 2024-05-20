@@ -1,14 +1,14 @@
 ---
 title: featureブランチに最新のmainが取り込まれているかチェックする方法
 tags:
-  - "Git"
-  - "GitHub"
-  - "CICD"
-  - "CloudBuild"
-  - "GoogleCloud"
+  - Git
+  - GitHub
+  - CloudBuild
+  - CICD
+  - GoogleCloud
 private: false
-updated_at: ""
-id: null
+updated_at: '2024-05-20T19:58:14+09:00'
+id: b0c889c1699621ff67da
 organization_url_name: null
 slide: false
 ignorePublish: false
