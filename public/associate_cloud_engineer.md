@@ -5,7 +5,7 @@ tags:
   - 資格
   - 新卒エンジニア
   - 資格勉強
-  - googlecloud
+  - GoogleCloud
 private: false
 updated_at: '2023-12-15T22:48:39+09:00'
 id: e30c0084412906529441
