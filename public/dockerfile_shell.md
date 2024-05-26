@@ -1,11 +1,11 @@
 ---
 title: Dockerfile内で条件分岐する方法
 tags:
-  - "Docker"
-  - "ShellScript"
+  - ShellScript
+  - Docker
 private: false
-updated_at: ""
-id: null
+updated_at: '2024-05-26T13:58:19+09:00'
+id: dd87b140cd84dd2fe837
 organization_url_name: null
 slide: false
 ignorePublish: false
