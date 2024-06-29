@@ -4,7 +4,7 @@ tags:
   - ShellScript
   - Docker
 private: false
-updated_at: '2024-05-30T01:16:15+09:00'
+updated_at: "2024-05-30T01:16:15+09:00"
 id: dd87b140cd84dd2fe837
 organization_url_name: null
 slide: false
@@ -13,7 +13,7 @@ ignorePublish: false
 
 # はじめに
 
-こちらの記事では、Dockerfile 内でCPUｗ条件分岐する方法について書きます。
+こちらの記事では、Dockerfile 内で CPU を条件分岐する方法について書きます。
 
 筆者は以前、M1 チップの Macbook で開発を進める際、プロジェクトの Dockerfile の環境構築がうまくできない事象に遭遇しました。
 というのも、そのプロジェクトではそれまでは intel チップを前提として環境構築していたわけですが、そのまま M1 チップに適用できないようなのです。調べていくと CPU のアーキテクチャごとに、インストールする必要があるパッケージや設定が異なる場合があることが分かりました。
