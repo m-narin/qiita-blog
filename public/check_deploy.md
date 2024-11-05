@@ -7,7 +7,7 @@ tags:
   - CICD
   - GoogleCloud
 private: false
-updated_at: '2024-05-20T22:55:05+09:00'
+updated_at: '2024-11-05T20:37:16+09:00'
 id: b0c889c1699621ff67da
 organization_url_name: null
 slide: false
