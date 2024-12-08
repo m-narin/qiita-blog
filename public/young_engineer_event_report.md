@@ -1,10 +1,10 @@
 ---
 title: 【イベント開催レポート】『2024年を振り返ろう！若手エンジニアのための交流LTナイト』に参加・登壇しました
 tags:
-  - 'イベントレポート'
+  - イベントレポート
 private: false
-updated_at: ''
-id: null
+updated_at: '2024-12-08T23:31:00+09:00'
+id: a95cb4f05a3a889a1944
 organization_url_name: null
 slide: false
 ignorePublish: false
