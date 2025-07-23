@@ -6,7 +6,7 @@ tags:
   - UPSERT
   - activerecord-import
 private: false
-updated_at: '2025-07-23T15:54:32+09:00'
+updated_at: "2025-07-23T15:54:32+09:00"
 id: 4393698aeb8a9dcd521a
 organization_url_name: null
 slide: false
@@ -17,7 +17,7 @@ ignorePublish: false
 
 [activerecord-import](https://github.com/zdennis/activerecord-import) は Rails で一括インポートを実現する強力な gem です。`on_duplicate_key_update` や `on_duplicate_key_ignore` といったオプションを使うことで upsert（既存レコードの更新または新規作成）を実現できます。
 
-しかし、これらのオプションはデータベースに対象カラムの一意制約（ユニークインデックス）が存在することが前提となっています。一意制約がない場合、これらのオプションは期待通りに動作せず、重複レコードが作られてしまいます。
+しかし、これらのオプションは DB に対象カラムの一意制約（ユニークインデックス）が存在することが前提となっています。一意制約がない場合、これらのオプションは期待通りに動作せず、重複レコードが作られてしまいます。
 
 そのため、import に渡すデータを事前に既存レコードかどうかで区別し、適切に処理する必要があります。本記事では、そのような場合の実装パターンを紹介します。
 
@@ -27,11 +27,11 @@ ignorePublish: false
 
 以下のような User テーブルがあるとします：
 
-- `store_id`：外部キー（Store テーブルへの参照）
-- `company_id`：外部キー（Company テーブルへの参照）
+- `store_id`：外部キー
+- `company_id`：外部キー
 - `name`：ユーザー名
 
-User テーブルに対して `store_id`, `company_id`, `name` の 3 つのカラムを bulk import する処理があり、`store_id` と `company_id` の組み合わせが既に存在する場合は upsert する要件があるものとします。
+User テーブルに対して `store_id`, `company_id`, `name` の 3 つのカラムを bulk import する処理があり、`store_id` と `company_id` の組み合わせが既に存在する場合は skip or 更新する要件があるものとします。
 
 ### 一意制約がある場合の実装
 
@@ -89,14 +89,14 @@ add_index :users, [:store_id, :company_id], unique: true
 
 ```ruby
 # インポート対象のデータ
-# user_attributes = [
-#   { store_id: 1, company_id: 1, name: "田中太郎" },
-#   { store_id: 1, company_id: 2, name: "鈴木花子" },
-#   { store_id: 2, company_id: 1, name: "佐藤次郎" }
-# ]
+user_attributes = [
+  { store_id: 1, company_id: 1, name: "田中太郎" },
+  { store_id: 1, company_id: 2, name: "鈴木花子" },
+  { store_id: 2, company_id: 1, name: "佐藤次郎" }
+]
 
 # 既存レコードの store_id と company_id の集合を取得
-# 重複のないSetオブジェクト=Hashでのアクセスが可能
+# 重複のないSetオブジェクトに変換
 existing_users =
   User
     .where(
@@ -125,8 +125,8 @@ end
 このアプローチのポイント：
 
 - `to_set` を使用することで、既存レコードの存在チェックを O(1) で実行可能
-- 既存レコードと重複するデータは事前に除外されるため、重複エラーが発生しない
-- バッチサイズで分割することで、大量データでもメモリ効率的に処理
+- 既存レコードと重複するデータは事前に除外されるため、重複レコードは作られない
+- バッチサイズで分割することで、大量データでもメモリ効率良く処理
 
 #### 既存レコードがある場合に更新する
 
@@ -134,10 +134,10 @@ end
 
 ```ruby
 # インポート対象のデータ
-# import_attributes = [
-#   { store_id: 1, company_id: 1, name: "更新後の名前" },
-#   { store_id: 3, company_id: 3, name: "新規ユーザー" }
-# ]
+import_attributes = [
+  { store_id: 1, company_id: 1, name: "更新後の名前" },
+  { store_id: 3, company_id: 3, name: "新規ユーザー" }
+]
 
 # 既存の User レコードを一度に取得
 # store_id と company_id の組み合わせをキーとし、対応する User を値とするハッシュ
@@ -176,7 +176,7 @@ import_attributes.each do |import_attribute|
   end
 end
 
-# 既存レコードの更新（on_duplicate_key_update を使用）
+# 既存レコードの更新（ name と updated_at を更新）
 if existing_records.present?
   User.import!(
     existing_records,
@@ -193,8 +193,8 @@ end
 このアプローチのポイント：
 
 - `index_by` を使用してキーでの高速アクセスを可能にしている
-- 既存レコードと新規レコードを分離して処理することで、それぞれに最適化された処理を実行
-- 既存レコードには `on_duplicate_key_update` を使用して確実に更新
+- 既存レコードと新規レコードを分離して処理することで、update と insert の両立を実現
+- 既存レコードには `on_duplicate_key_update` を使用して更新
 - メモリ上でレコードを分類してから一括処理するため、データベースへのアクセス回数が最小限
 
 ## まとめ
@@ -208,3 +208,5 @@ activerecord-import の `on_duplicate_key_update` や `on_duplicate_key_ignore` 
 - バッチ処理により大量データでも安定した処理を実現
 
 このアプローチにより、activerecord-import を使った柔軟で高速な一括データ処理が可能になります。
+
+Co-Authored-By: Claude 🤖
