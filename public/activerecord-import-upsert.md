@@ -3,12 +3,12 @@ title: 【Rails】activerecord-import で柔軟に upsert を実現する方法
 tags:
   - Ruby
   - Rails
+  - UPSERT
   - activerecord-import
   - bulk_insert
-  - upsert
 private: false
-updated_at: ""
-id:
+updated_at: '2025-07-23T15:40:15+09:00'
+id: 4393698aeb8a9dcd521a
 organization_url_name: null
 slide: false
 ignorePublish: false
