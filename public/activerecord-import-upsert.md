@@ -15,7 +15,7 @@ ignorePublish: false
 
 ## はじめに
 
-activerecord-import は Rails で一括インポートを実現する強力な gem です。`on_duplicate_key_update` や `on_duplicate_key_ignore` といったオプションを使うことで upsert（既存レコードの更新または新規作成）を実現できます。
+[activerecord-import](https://github.com/zdennis/activerecord-import) は Rails で一括インポートを実現する強力な gem です。`on_duplicate_key_update` や `on_duplicate_key_ignore` といったオプションを使うことで upsert（既存レコードの更新または新規作成）を実現できます。
 
 しかし、これらのオプションはデータベースに対象カラムの一意制約（ユニークインデックス）が存在することが前提となっています。一意制約がない場合、これらのオプションは期待通りに動作せず、重複レコードが作られてしまいます。
 
