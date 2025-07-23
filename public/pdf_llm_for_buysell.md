@@ -5,7 +5,7 @@ tags:
   - OpenAI
   - colaboratory
   - ChatGPT
-  - langchain
+  - LangChain
 private: false
 updated_at: '2023-12-31T18:33:19+09:00'
 id: 394d53102c10ec65ec14
