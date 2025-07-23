@@ -6,7 +6,7 @@ tags:
   - UPSERT
   - activerecord-import
 private: false
-updated_at: '2025-07-23T15:45:38+09:00'
+updated_at: "2025-07-23T15:45:38+09:00"
 id: 4393698aeb8a9dcd521a
 organization_url_name: null
 slide: false
@@ -18,8 +18,6 @@ ignorePublish: false
 [activerecord-import](https://github.com/zdennis/activerecord-import) は Rails で一括インポートを実現する強力な gem です。`on_duplicate_key_update` や `on_duplicate_key_ignore` といったオプションを使うことで upsert（既存レコードの更新または新規作成）を実現できます。
 
 しかし、これらのオプションはデータベースに対象カラムの一意制約（ユニークインデックス）が存在することが前提となっています。一意制約がない場合、これらのオプションは期待通りに動作せず、重複レコードが作られてしまいます。
-
-なお、Active Record の validation（例：`validates :store, uniqueness: { scope: [:company] }`）が設定されていたとしても`activerecord-import`は 無視するようです。
 
 そのため、import に渡すデータを事前に既存レコードかどうかで区別し、適切に処理する必要があります。本記事では、そのような場合の実装パターンを紹介します。
 
@@ -78,6 +76,8 @@ User.import!(
 # マイグレーションファイルでの一意制約の例
 add_index :users, [:store_id, :company_id], unique: true
 ```
+
+なお、Active Record の validation（例：`validates :store, uniqueness: { scope: [:company] }`）が設定されていたとしても`activerecord-import`は 無視するようです。
 
 ### 一意制約がない場合の実装
 
