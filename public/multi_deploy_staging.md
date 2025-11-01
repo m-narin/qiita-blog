@@ -40,21 +40,26 @@ ignorePublish: false
 
 ## 方法
 
-最初に、これから説明する GitHub Actions により、開発者はたったこれだけのステップで上記のメリットを享受できるようになります。
+最初に、結論として開発者は以下に挙げるたったこれだけのステップで上記のメリットを享受できるようになったということを書きます。
+これから説明しますが、GitHub Actions による便利ツールを作るようなイメージです。
+前提として develop ブランチから feature ブランチを切り出し開発を進めるスタイルとします。
 
 ### step1 動作確認対象の PR に専用 label をつける
+
+PR に専用 label を付けます。ここでは「deploy/staging」とします。
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/5289e59f-3d92-4dba-9137-93891fa1aeb1.png)
 
 ### step2 専用ワークフローを 実行
 
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/48b0e40b-c0aa-4796-a4da-0eeb3b7d2917.png)
+GitHub Actions ページの UI から専用ワークフローを選択し、「Run workflow」→ develop ブランチを指定して実行します。
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/e79ed142-97d6-4a9e-a2e6-7045acc74c8d.png)
 
-これを実行することで、専用 label のついた PR（Open or Draft）の内容がまとめて ステージング環境 に deploy されます。
+この 2 step により、専用 label のついた PR（Open or Draft）の内容がまとめて ステージング環境 に deploy されるようになります。
 
 ## 専用ワークフロー
 
-作成するワークフローはこちらになります。label 名は「deploy/staging」とします。
+作成するワークフローはこちらになります。
 
 ```yaml:multi-deploy-staging.yaml
 name: Multi deploy staging
