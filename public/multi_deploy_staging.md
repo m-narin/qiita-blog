@@ -64,7 +64,7 @@ on:
 
 jobs:
   update-deploy-branch:
-    runs-on: ubuntu-22.04-arm64
+    runs-on: ubuntu-latest
     concurrency:
       group: update-multi-deploy-staging
       cancel-in-progress: true
