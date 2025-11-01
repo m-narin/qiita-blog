@@ -85,11 +85,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Reset deploy/staging branch to develop
-        run: |
-          git fetch origin develop
-          git checkout -B deploy/stgging origin/develop
-
       - name: List open PRs with label deploy/staging
         run: |
           gh pr list \
@@ -100,6 +95,11 @@ jobs:
             > pr_lists.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Reset deploy/staging branch to develop
+        run: |
+          git fetch origin develop
+          git checkout -B deploy/staging origin/develop
 
       - name: Debug Show raw pr_lists.json
         run: |
@@ -148,7 +148,6 @@ jobs:
   deploy:
     needs: update-deploy-branch
     # 各自追記
-
 ```
 
 ## 専用ワークフロー解説
@@ -168,9 +167,10 @@ TODO: 画像
 ### 3. Merge each labeled PR
 
 専用 label のついた PR の差分を、current branch である deploy/staging に取り込んでいきます。
-PR 番号から PR の HEAD（最新コミット）を参照し、local のブランチに保存します。
+もし一つもなければ処理を skip します。
+PR 番号から PR の HEAD（最新コミット）を参照します。
 
-下記のようなログが出ています。
+下記のようなログが出ますが、これの通り PR 番号に紐づいた形で local ブランチに保存します。
 `refs/pull/1520/head -> pr-1520`
 
 PR ごとの差分が競合する場合も考慮する必要があり、もし conflict が発生するようなら処理停止します。
