@@ -31,26 +31,26 @@ ignorePublish: false
 # 解決方針
 
 解決方針はシンプルに複数の内容をまとめて deploy できるようにすれば良いのでは？という発想から下記の点が満たせれば良いと条件を決めました。
-動作確認 フェーズ の生産性向上を期待しています。
 
 - 待ちを気にしないで開発内容を deploy し動作確認できる
 - 複数機能まとめて deploy できる
   - 対象は PR から取得する
 
+動作確認 フェーズ の生産性向上を期待しています。
+
 ## 方法
 
-最初に、これから説明する便利ツールを設定することにより、開発者はたったこれだけのステップで上記の機能を享受できるようになります。
-実際の処理は GitHub Actions にて設定していきます（後述）。
+最初に、これから説明する GitHub Actions により、開発者はたったこれだけのステップで上記のメリットを享受できるようになります。
 
 ### step1 動作確認対象の PR に専用 label をつける
 
-TODO: 画像
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/5289e59f-3d92-4dba-9137-93891fa1aeb1.png)
 
 ### step2 専用ワークフローを 実行
 
-TODO: 画像
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/48b0e40b-c0aa-4796-a4da-0eeb3b7d2917.png)
 
-これを実行することで、専用 label のついた PR（Open or Draft）の内容がまとめて stg-2 に deploy されます。
+これを実行することで、専用 label のついた PR（Open or Draft）の内容がまとめて ステージング環境 に deploy されます。
 
 ## 専用ワークフロー
 
@@ -152,11 +152,13 @@ jobs:
 
 ## 専用ワークフロー解説
 
+まず、このワークフローは workflow_dispatch により、GitHub Actions の UI 上から実行できるようになります。
+
+下記は各 step の説明になります。
+
 ### 1. List open PRs with label deploy/staging
 
-GitHub CLI を利用し、専用 label のついた Open PR 一覧を取得します。
-
-TODO: 画像
+GitHub CLI を利用し、専用 label のついた Open PR 一覧（Draft 含む）を取得します。
 
 ### 2. Reset deploy/staging branch to develop
 
