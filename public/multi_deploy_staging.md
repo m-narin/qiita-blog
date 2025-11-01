@@ -1,5 +1,5 @@
 ---
-title: 【GitHubActions】同時デプロイして動作確認を効率化
+title: 【GitHub Actions】同時デプロイして動作確認を効率化
 tags:
   - Git
   - GitHub
