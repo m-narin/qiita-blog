@@ -140,8 +140,9 @@ jobs:
         id: get-sha
         run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-  # ${{ needs.update-deploy-branch.outputs.sha }}で「deploy/staging」ブランチの最新コミットハッシュが取得できます。
-  # この後は各々のdeployワークフローを設定する必要があります。
+  # ${{ needs.update-deploy-branch.outputs.sha }}で、
+  #「deploy/staging」ブランチの最新コミットハッシュが取得できます。
+  # この後は各々のdeploy用のワークフローを設定する必要があります。
   build:
     needs: update-deploy-branch
     # 各自追記
@@ -175,13 +176,15 @@ GitHub CLI を利用し、専用 label のついた Open PR 一覧（Draft 含�
 
 専用 label のついた PR の差分を、current branch である deploy/staging に取り込んでいきます。
 もし一つもなければ処理を skip します。
-PR 番号から PR の HEAD（最新コミット）を参照します。
+PR 番号から PR の HEAD（最新コミット）を参照し、PR 番号に紐づいた形で local ブランチに保存します。
 
-下記のようなログが出ますが、これの通り PR 番号に紐づいた形で local ブランチに保存します。
-`refs/pull/1520/head -> pr-1520`
+各 local ブランチを deploy/staging に順次 merge していきます。
 
-PR ごとの差分が競合する場合も考慮する必要があり、もし conflict が発生するようなら処理停止します。
-こうなったら従来通り個別 deploy するしかなさそうですが、自チームの運用では 150 回ほど実行され一度もこの状況は発生しませんでした。
+ここまで三つの処理は下記画像のようにログが出てきます。ここでは PR 番号 1,2 が取得され merge されていることが分かります。
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/0520a863-41fc-42c6-869b-9d0c239a90a6.png)
+
+一方、留意事項として PR ごとの差分が競合する場合も考慮する必要があり、もし conflict が発生するようなら処理停止します。
+こうなったら従来通り個別 deploy するしかなさそうですが、私のチームの場合、これまで 150 回ほど実行してきましたがこの状況は一度も発生しませんでした。
 
 ### 4. Push to deploy/staging
 
@@ -218,6 +221,8 @@ group と cancel-in-progress により既に実行中のものはキャンセル
 
 また、ラベル付けとワークフロー実行という簡単な操作だけで利用開始することができるため、チームへの導入障壁も小さいです。
 実際に私のチームでは数日で運用が定着していきました。
+
+副次的な効果として、この仕組みを導入することを通して、Git, GitHub Actions, GitHub CLI の知見が複合的に得られるため学習題材としても有用かなとも思います。
 
 このようにコスパ良く生産性向上が見込めるため、開発フローにおいて同様の課題感を感じているチームには、ぜひ導入を検討していただければと思います。
 
