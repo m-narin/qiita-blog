@@ -1,12 +1,12 @@
 ---
-title: 【GitHub Actions】複数のPRを同時デプロイして動作確認を効率化
+title: 【GitHub Actions】複数のPRを同時デプロイして動作確認を効率化する
 tags:
   - Git
   - GitHub
   - CICD
   - GitHubActions
 private: false
-updated_at: '2025-11-02T16:40:59+09:00'
+updated_at: "2025-11-02T16:40:59+09:00"
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
