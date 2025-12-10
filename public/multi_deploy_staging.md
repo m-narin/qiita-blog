@@ -6,7 +6,7 @@ tags:
   - CICD
   - GitHubActions
 private: false
-updated_at: "2025-11-02T16:42:03+09:00"
+updated_at: '2025-12-10T15:35:21+09:00'
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
