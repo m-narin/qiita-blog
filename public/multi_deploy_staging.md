@@ -6,7 +6,7 @@ tags:
   - CICD
   - GitHubActions
 private: false
-updated_at: '2025-11-02T16:42:03+09:00'
+updated_at: "2025-11-02T16:42:03+09:00"
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
@@ -184,8 +184,9 @@ PR 番号から PR の HEAD（最新コミット）を参照し、PR 番号に�
 これまでの三つの処理は下記画像のようなログを出します。ここでは PR 番号 1,2 が取得され merge されていることが分かります。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/0520a863-41fc-42c6-869b-9d0c239a90a6.png)
 
-一方、留意事項として PR ごとの差分が競合する場合も考慮する必要があり、もし conflict が発生するようなら処理を停止します。
-こうなったら従来通り個別 deploy するしかなさそうですが、私のチームの場合、これまで 150 回ほど実行してきて一度も発生しませんでした。
+一方、PR ごとの差分が競合する場合も考慮する必要があり、もし conflict が発生するようなら処理を停止します。
+こうなったら、片方ラベルを外す等して対応する必要がありますのでご留意ください。
+ちなみに私のチームでは 150 回ほど実行してきて、コンフリクトはほぼ発生しませんでした。
 
 ### 4. Push to deploy/staging
 
