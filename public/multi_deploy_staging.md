@@ -6,7 +6,7 @@ tags:
   - CICD
   - GitHubActions
 private: false
-updated_at: '2025-12-10T15:35:21+09:00'
+updated_at: "2025-12-10T15:35:21+09:00"
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
@@ -15,7 +15,7 @@ ignorePublish: false
 
 # はじめに
 
-こちらの記事では、GitHub Actions にてステージングのようなテスト環境に複数の開発内容を同時デプロイし、動作確認を効率化する方法について書きます。
+こちらの記事では、ステージングのようなテスト環境に複数の開発内容を同時デプロイし、動作確認を効率化する方法について書きます。
 
 # 背景
 
