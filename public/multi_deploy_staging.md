@@ -6,7 +6,7 @@ tags:
   - CICD
   - GitHubActions
 private: false
-updated_at: '2025-12-11T18:39:05+09:00'
+updated_at: "2025-12-11T18:39:05+09:00"
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
@@ -57,6 +57,24 @@ GitHub Actions ページの UI から専用ワークフローを選択し、「R
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/e79ed142-97d6-4a9e-a2e6-7045acc74c8d.png)
 
 この 2 step により、専用 label のついた PR（Open or Draft）の内容がまとめて ステージング環境 に deploy されるようになります。
+
+ちなみにコマンドから実行する場合は下記のようにできます。
+
+```makefile:Makefile
+multi-deploy/%: ## Deploy PRs with deploy/* label to specified environment (e.g., make multi-deploy/staging) needs gh cli
+	@WORKFLOW_FILE="multi-deploy-$*.yaml"; \
+	if ! gh workflow list --json path -q '.[].path' | grep -q "$$WORKFLOW_FILE"; then \
+		echo "Error: Workflow $$WORKFLOW_FILE does not exist"; \
+		echo "Available multi-deploy-* workflows:"; \
+		gh workflow list --json path -q '.[].path' | grep "multi-deploy-.*\.yaml" || echo "  (none found)"; \
+		exit 1; \
+	fi; \
+	echo "Triggering workflow multi-deploy-$*.yaml..."; \
+	gh workflow run "multi-deploy-$*.yaml" --ref develop; \
+	echo "Check workflow status: https://github.com/{organization}/{repository}/actions/workflows/multi-deploy-$*.yaml"
+```
+
+※ `{organization}/{repository}` 部分は指定のリポジトリに置き換えてください。
 
 ## 専用ワークフロー
 
