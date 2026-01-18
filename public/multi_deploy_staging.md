@@ -6,7 +6,7 @@ tags:
   - CICD
   - GitHubActions
 private: false
-updated_at: '2025-12-23T20:06:52+09:00'
+updated_at: "2025-12-23T20:06:52+09:00"
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
@@ -159,20 +159,31 @@ jobs:
         id: get-sha
         run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-  # ${{ needs.update-deploy-branch.outputs.sha }}で、
-  #「deploy/staging」ブランチの最新コミットハッシュが取得できます。
-  # この後は各々デプロイジョブを設定する必要があります。
+  # 後続のbuild, deployワークフローは各プロジェクトの要件に応じて追記してください。
+  # deploy/stagingブランチで実行する必要があることと、IMAGE_TAGのSHAはupdate-deploy-branchで取得した値を利用できます。
   build:
     needs: update-deploy-branch
-    # 各自追記
-
-  migrate:
-    needs: update-deploy-branch
-    # 各自追記
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: ${{ needs.update-deploy-branch.outputs.sha }}
+    steps:
+      - name: Checkout deploy/staging branch
+        uses: actions/checkout@v4
+        with:
+          ref: deploy/staging
+      # 各自追記
 
   deploy:
     needs: update-deploy-branch
-    # 各自追記
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: ${{ needs.update-deploy-branch.outputs.sha }}
+    steps:
+      - name: Checkout deploy/staging branch
+        uses: actions/checkout@v4
+        with:
+          ref: deploy/staging
+      # 各自追記
 ```
 
 ## 専用ワークフロー解説
