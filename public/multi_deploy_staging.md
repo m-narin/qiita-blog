@@ -6,7 +6,7 @@ tags:
   - CICD
   - GitHubActions
 private: false
-updated_at: '2026-01-18T23:14:37+09:00'
+updated_at: "2026-01-18T23:14:37+09:00"
 id: 6dafdb96f1745aaefa6d
 organization_url_name: null
 slide: false
@@ -160,7 +160,8 @@ jobs:
         run: echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
   # 後続のbuild, deployワークフローは各プロジェクトの要件に応じて追記してください。
-  # deploy/stagingブランチで実行する必要があることと、IMAGE_TAGのSHAはupdate-deploy-branchで取得した値を利用できます。
+  # deploy/stagingブランチで実行する必要があることと、
+  # IMAGE_TAGを設定する場合のSHAは、update-deploy-branchで取得した値を利用できます。
   build:
     needs: update-deploy-branch
     runs-on: ubuntu-latest
