@@ -1,5 +1,5 @@
 ---
-title: 【GitHub Actions】複数のPRを同時デプロイして動作確認を効率化する
+title: 【GitHub Actions】動作確認を同時にできるようにし、サイクルタイムを改善する
 tags:
   - Git
   - GitHub
@@ -28,6 +28,9 @@ ignorePublish: false
 
 このように、開発フローの動作確認周りの効率が悪いといった課題感を持っていました。
 サイクルタイムで言えばレビューから merge までの時間に改善の余地が多分に存在するといった状況でした。
+
+図示すると、下記のように動作確認フェーズが直列に実行されており非効率な部分があるということになります。
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/7c71baad-8197-4e1f-80f7-1bec61267d4c.png)
 
 # 解決方針
 
@@ -244,6 +247,9 @@ group と cancel-in-progress により既に実行中のものはキャンセル
 - 待ちを気にしないで開発内容を deploy し動作確認できる
 - 複数機能まとめて deploy できる
   - 対象は PR から取得する
+
+図示すると、下記のように動作確認フェーズを並行して実施することができるため、結果としてサイクルタイムも向上することにつながります。
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/614347/d49780bf-f564-407d-9e7b-a3c1c5e22634.png)
 
 # まとめ
 
