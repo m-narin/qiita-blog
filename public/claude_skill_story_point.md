@@ -2,13 +2,13 @@
 title: 【Claude Code】IssueのStory Point付与を自動化するskill
 tags:
   - GitHub
-  - GitHubProjects
   - 生成AI
+  - GitHubProjects
   - ClaudeCode
   - AgentSkills
 private: false
-updated_at: ''
-id: null
+updated_at: '2026-05-25T12:02:06+09:00'
+id: 17c348f53614ba7e20b8
 organization_url_name: null
 slide: false
 ignorePublish: false
