@@ -1,5 +1,5 @@
 ---
-title: GitHub Actions、基礎とその可能性
+title: 【GitHub Actions】基礎とその可能性
 tags:
   - Git
   - GitHub
