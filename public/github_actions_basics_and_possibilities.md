@@ -3,12 +3,12 @@ title: GitHub Actions、基礎とその可能性
 tags:
   - Git
   - GitHub
+  - devops
   - CICD
   - GitHubActions
-  - DevOps
 private: false
-updated_at: ''
-id: null
+updated_at: '2026-05-25T11:39:20+09:00'
+id: bb796b675c5a96ba04a3
 organization_url_name: null
 slide: false
 ignorePublish: false
