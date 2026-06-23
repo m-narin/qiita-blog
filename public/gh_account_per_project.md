@@ -1,14 +1,14 @@
 ---
 title: 【Git】複数のGitHubアカウントをプロジェクトごとに使い分ける（gh CLI + direnv）
 tags:
-  - GitHub
-  - gh
-  - direnv
-  - Git
   - Mac
+  - Git
+  - GitHub
+  - direnv
+  - GH
 private: false
-updated_at: ''
-id: null
+updated_at: '2026-06-23T13:51:56+09:00'
+id: e50d5749de12ce785ebc
 organization_url_name: null
 slide: false
 ignorePublish: false
